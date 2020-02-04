@@ -68,9 +68,40 @@ hr {
   }
   
   
-  .bottom-text{
+.bottom-text{
 	text-align: center;
 	font-size: 13px;
 	margin-bottom: 14px;
-  }
+}
 
+.login-form {
+	width: 80%;
+	margin: auto;
+	padding-top: 25px;
+}
+
+.background-form {
+	width: 30%;
+	height: 300px;
+	background-color: white;
+	margin: 15% auto;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.24);
+}
+
+.btn-login-signup {
+	text-align: center;
+	padding-top: 0px;
+}
+.btn-login {
+	outline: none;
+	width: 49.2%;
+	background-color: white; /* Green */
+	border: none;
+	color: black;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	
+}

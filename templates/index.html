@@ -7,42 +7,10 @@
         color: #336699;
     }
 </style>
+<script src = "static/Js/signupclick.js"></script>
 {% endblock %}
 {% block content %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class=container>
-        <a class="navbar-brand" href="#"><img src="static/css/icon1.png" class="logo">Bit Blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#signupform" href="#"><i
-                            class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#loginform" href="#"><i class="fa fa-sign-in"
-                            aria-hidden="true"></i> Login</a>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-</nav>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -50,85 +18,11 @@
                 <h1>Bit Blog</h1>
                 <h3>Say something deep shits in here</h3>
                 <hr>
-                <button class="btn btn-light"><i class="fa fa-power-off" aria-hidden="true"></i> Get Started!</button>
+                <form action="{{url_for('signup')}}" method="get">
+                    <button class="btn btn-light"><i class="fa fa-power-off" aria-hidden="true"></i> Get Started!</button>
+                <form>
+                
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Sign up -->
-<div class="modal fade container" id="signupform" tabindex="-1" role="dialog" aria-labelledby="signupform"
-    aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="signUpLabel">SignUp</h5>
-                <button type="button" class="close" aria-label="Close" data-dismiss='modal'>
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <form method="post" id = "formSignUp">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="inputName">User Name</label>
-                        <input type="name" class="form-control" name='username' id="inputName"
-                            placeholder="Enter UserName">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail">Email address</label>
-                        <input type="email" class="form-control" name='email' id="inputEmail"
-                            aria-describedby="emailHelp" placeholder="Enter email">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" name='password' id="inputPassword"
-                            placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-primary submitlog logbtn" id="btnSignUp"
-                        data-dismiss='modal' name = 'btnsignup'>SignUp</button>
-                    <div class="bottom-text">
-                        Already a member? <a href="#" data-toggle="modal" data-target="#loginform" data-dismiss='modal'
-                            style="font-weight: bold;">Log in</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade container" id="loginform" tabindex="-1" role="dialog" aria-labelledby="loginform" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title loginlabel" id="LoginLabel">Login</h5>
-                <button type="button" class="close" aria-label="Close" data-dismiss='modal'>
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="post" id = "formLogin">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="InputEmail1" name="email"
-                            aria-describedby="emailHelp" placeholder="Enter email">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="InputPassword1">Password</label>
-                        <input type="password" class="form-control" id="InputPassword1" name="password"
-                            placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-primary submitlog logbtn" data-dismiss='modal'  id="btnLogin"> Login</button>
-                    <div class="bottom-text">
-                        Don't have account? <a href="#" data-toggle="modal" data-target="#signupform" data-dismiss='modal'
-                            style="font-weight: bold;">Sign up</a>
-                    </div>
-                </div>   
-            </form>
         </div>
     </div>
 </div>

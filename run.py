@@ -9,32 +9,44 @@ from models import *
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres@localhost:5555/myblog?password=123456789"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres@localhost:5432/?password=c_hFbTvTcJFwQw"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 
 
-@app.route('/', methods = ['GET', 'POST'])
+@app.route('/', methods = ['GET'])
 def helloWorld():
-    if request.method == "POST":
-        if(request.form.get("formID") == "formSignUp"):
-            user = User(email = request.form.get("email"), username = request.form.get("username"), password = request.form.get("password"))
-            db.session.add(user)
-            try:
-                db.session.commit()
-            except IntegrityError as err:
-                db.session.rollback()
-                numemail = User.query.filter_by(email = request.form.get("email")).count()
-                numusername = User.query.filter_by(username = request.form.get("username")).count()
-                print(numemail)
-                print(numusername)
-                
-       
-
     return render_template('index.html')
 
+@app.route('/signup', methods = ['GET'])
+def signup():
+    return render_template('loginsignupPage.html')
+
+@app.route('/signup-tab', methods = ['GET', 'POST'])
+def signup_tab():
+    print("log log ")
+    if(request.method == "GET"):
+        return render_template('loginsignupPage.html', title = "signup")
+    else:
+        typePost = request.form.get("type")
+        if(typePost == "change_content"):
+            return render_template('signupForm.html')
+        else:
+            print(request.form.get("usernameInput"))
+            return render_template('signupForm.html')
+        
 
 
+@app.route('/login-tab', methods = ['GET', 'POST'])
+def login_tab():
+    if(request.method == "GET"):
+        return render_template('loginsignupPage.html', title = "login")
+    else:
+        typePost = request.form.get("type")
+        if(typePost == "change_content"):
+            return render_template('loginForm.html')
+        else:
+            return render_template('loginForm.html')
 if __name__ == '__main__':
     app.run(debug=True)
