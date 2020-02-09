@@ -1,10 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from myblog import db
 
 class User(db.Model):
     __tablename__ = "user"
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String, nullable=False, unique = True)
     username = db.Column(db.String, nullable=False, unique = True)
     password = db.Column(db.String, nullable=False)
@@ -25,8 +23,8 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey("postblog.id"), nullable=False)
 
-class Like(db.Model):
-    __tablename__ = "like"
-    content = db.Column(db.String, nullable  = False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey("postblog.id"), nullable=False)
+# class Like(db.Model):
+#     __tablename__ = "like"
+#     content = db.Column(db.String, nullable  = False)
+#     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+#     post_id = db.Column(db.Integer, db.ForeignKey("postblog.id"), nullable=False)
