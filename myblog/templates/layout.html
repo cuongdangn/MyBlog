@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -34,15 +34,15 @@
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                 </ul>
-                <!-- <ul class="navbar-nav navbar-right">
+                <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
-                        <a id = "signup" class="nav-link" href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
+                        <a  class="nav-link" href="{{ url_for('signup_tab') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
                     </li>
                     <li class="nav-item">
-                        <a id = "signup" class="nav-link" href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                        <a  class="nav-link" href="{{ url_for('login_tab') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                     </li>
                 </ul>
-     -->
+    
             </div>
         </div>
     </nav>

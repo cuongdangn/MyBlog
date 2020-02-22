@@ -1,12 +1,31 @@
 from flask import render_template, request, redirect
 from myblog import app
 from myblog.models import *
-from myblog.forms import *
+from myblog.forms import RegistrationForm, LoginForm
+
+posts = [
+    {
+        'author': 'Corey Schafer',
+        'title': 'Blog Post 1',
+        'content': 'First post content',
+        'date_posted': 'April 20, 2018'
+    },
+    {
+        'author': 'Jane Doe',
+        'title': 'Blog Post 2',
+        'content': 'Second post content',
+        'date_posted': 'April 21, 2018'
+    }
+]
 
 
 @app.route('/', methods = ['GET'])
-def helloWorld():
+def wellcome():
     return render_template('index.html')
+
+@app.route('/home', methods = ['GET'])
+def home():
+    return render_template("home.html", posts = posts)
 
 @app.route('/signup', methods = ['GET'])
 def signup():
@@ -40,6 +59,7 @@ def login_tab():
     else:
         typePost = request.form.get("type")
         if(typePost == "change_content"):
-            return render_template('login_form.html')
+            form = LoginForm()
+            return render_template('login_form_wtform.html', form = form)
         else:
             return render_template('login_form.html')
