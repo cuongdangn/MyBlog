@@ -1,0 +1,107 @@
+#content {
+	text-align: center;
+	padding-top: 20%;
+	text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+				0px 8px 13px rgba(0,0,0,0.1),0px 18px 23px rgba(0,0,0,0.1);
+}
+
+.logo {
+	width: 25px;
+	height: 25px;
+	margin-bottom: 8px;
+	margin-right: 5px;
+}
+body {
+	background : url("bg3.png");
+	background-size: cover;
+	background-position: center;
+	font-family: Lato;
+	color:  white;
+}
+h1 {
+	font-weight:  700;
+	font-size: 5em;
+}
+
+html {
+	height: 100%;
+}
+
+hr {
+	width: 400px;
+	border-top: 1px solid #f8f8f8;
+	border-top: 1px solid rgba(0,0,0,0.2);
+	border: 1px solid white;
+
+}
+
+.loginbt {
+	background-color: GhostWhite ;
+	margin-left: 4px;
+	margin-top: 4px;
+}
+#loginform {
+	color : black;
+}
+#signupform {
+	color: black;
+}
+
+.loginlabel {
+	vertical-align: middle;
+}
+
+.logbtn {
+	display: block;
+	width: 60%;
+	height: 45px;
+	border: none;
+	background: #3498db;
+	background-size: 100%;
+	color: #fff;
+	outline: none;
+	cursor: pointer;
+	transition: .5s;
+	margin-left: 20%;
+	margin-bottom: 20px;
+	
+  }
+  
+  
+.bottom-text{
+	text-align: center;
+	font-size: 13px;
+	margin-bottom: 14px;
+}
+
+.login-form {
+	width: 80%;
+	margin: auto;
+	padding-top: 25px;
+}
+
+.background-form {
+	width: 30%;
+	height: 400px;
+	background-color: white;
+	margin: 15% auto;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 10px 10px 0 rgba(0, 0, 0, 0.24);
+}
+
+.btn-login-signup {
+	text-align: center;
+	padding-top: 0px;
+}
+.btn-login {
+	outline: none;
+	width: 49.2%;
+	background-color: white; /* Green */
+	border: none;
+	color: black;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	
+}

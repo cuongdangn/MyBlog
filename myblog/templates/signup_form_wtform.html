@@ -1,0 +1,21 @@
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        <!-- <input type="text" class="form-control" name="usernameInput" aria-describedby="emailHelp"
+            placeholder="User Name"> -->
+        {{form.username(class = "form-control")}}
+    </div>
+    <div class="form-group">
+        <!-- <input type="email" class="form-control" name="emailInput" aria-describedby="emailHelp"
+            placeholder="Email"> -->
+        {{form.email(class = "form-control")}}
+    </div>
+    <div class="form-group">
+        {{form.password(class = "form-control")}}
+    </div>
+    <div class="form-group">
+        {{form.confirm_password(class = "form-control")}}
+    </div>
+    <!-- <button type="submit" class="btn btn-primary" id = "btn-submit-form">Create An Account</button> -->
+    {{form.submit(class = "btn btn-primar" id = "btn-submit-form")}}
+</form>

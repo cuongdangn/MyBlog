@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+
+{% block script %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('#login-tab').onclick = () => {
+            clickTo('login-tab')
+        }
+
+        document.querySelector('#signup-tab').onclick = () => {
+            clickTo('signup-tab')
+        }
+
+        //console.log(document.title);
+        if(document.title == "signup - BitBlog")
+            clickTo('signup-tab');
+        else
+            clickTo('login-tab');
+        
+        // listner post signup and login
+
+
+
+    });
+    var curtab = "";
+    function clickTo(button) {
+        if (curtab ===  button) 
+            return;
+        curtab = button;
+        const request = new XMLHttpRequest();
+        let url = "/" + button;
+        //console.log(url)
+        request.open("POST", url);
+
+        request.onload = () => {
+            const response = request.responseText;
+            document.querySelector('#content_form').innerHTML = response;
+            document.querySelector('#signup-tab').style.backgroundColor = "#ededed";
+            document.querySelector('#signup-tab').style.color = "#8c989c";
+            document.querySelector('#login-tab').style.backgroundColor = "#ededed";
+            document.querySelector('#login-tab').style.color = "#8c989c";
+            document.querySelector("#"+button).style.backgroundColor = "white";
+            document.querySelector("#"+button).style.color = "black";
+            document.querySelector(".background-form").style.height = "370px";
+            if(button === "login-tab")
+                document.querySelector(".background-form").style.height = "300px";
+            // Push state to URL.
+            document.title = button;
+            history.pushState(null, url, url);
+        };
+        const data = new FormData();
+        data.append("type","change_content")
+        request.send(data);
+        
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class = "background-form">
+    <div class = "btn-login-signup">
+        <button type="submit" class="btn-login" id = "login-tab">Login</button>
+        <button type="submit" class="btn-login" id = "signup-tab">Signup</button>
+    </div>
+    <div class="login-form" id = "content_form">
+        <form>
+            <div class="form-group">
+                <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+                    placeholder="Your username or email">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="passwordInput" placeholder="Your password">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-primary" id = "btn-submit-form">Login</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
