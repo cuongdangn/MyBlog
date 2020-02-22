@@ -42,6 +42,9 @@
             document.querySelector('#login-tab').style.color = "#8c989c";
             document.querySelector("#"+button).style.backgroundColor = "white";
             document.querySelector("#"+button).style.color = "black";
+            document.querySelector(".background-form").style.height = "370px";
+            if(button === "login-tab")
+                document.querySelector(".background-form").style.height = "300px";
             // Push state to URL.
             document.title = button;
             history.pushState(null, url, url);
