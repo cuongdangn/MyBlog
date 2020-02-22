@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect
 from myblog import app
 from myblog.models import *
+from myblog.forms import *
 
 
 @app.route('/', methods = ['GET'])
@@ -19,7 +20,8 @@ def signup_tab():
     else:
         typePost = request.form.get("type")
         if(typePost == "change_content"):
-            return render_template('signup_form.html')
+            form = RegistrationForm()
+            return render_template('signup_form_wtform.html', form = form)
         else:
             new_user = User(email = request.form.get("emailInput"), 
                             username = request.form.get("usernameInput"),
