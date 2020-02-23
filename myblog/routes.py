@@ -50,7 +50,7 @@ def signup_tab():
             if form.validate_on_submit():
                 flash(f'Account created for {form.username.data}!', 'success')
                 return redirect(url_for('home'))
-            return render_template('signup_form.html')
+            return render_template('loginsignup_page.html', title = "signup", form = form)
         
 
 
@@ -60,8 +60,14 @@ def login_tab():
         return render_template('loginsignup_page.html', title = "login")
     else:
         typePost = request.form.get("type")
+        form = LoginForm()
         if(typePost == "change_content"):
-            form = LoginForm()
             return render_template('login_form_wtform.html', form = form)
         else:
-            return render_template('login_form.html')
+            if form.validate_on_submit():
+                if form.email.data == 'admin@blog.com' and form.password.data == 'Password':
+                    flash('You have been logged in!', 'success')
+                    return redirect(url_for('home'))
+                else:
+                    flash('Login Unsuccessful. Please check username and password', 'danger')
+            return render_template('login_form_wtform.html', form = form)

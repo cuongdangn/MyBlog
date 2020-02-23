@@ -35,6 +35,7 @@
         request.open("POST", url);
 
         request.onload = () => {
+            console.log("on load");
             const response = request.responseText;
             document.querySelector('#content_form').innerHTML = response;
             document.querySelector('#signup-tab').style.backgroundColor = "#ededed";
@@ -54,6 +55,9 @@
         data.append("type","change_content")
         request.send(data);    
     }
+    function submitForm(){
+        
+    }
 </script>
 {% endblock %}
 
@@ -64,7 +68,9 @@
         <button type="submit" class="btn-login" id = "login-tab">Login</button>
         <button type="submit" class="btn-login" id = "signup-tab">Signup</button>
     </div>
-    <div class="login-form" id = "content_form">
+
+    <div class="login-form" id = "content_form">   
+        {% block form_content %}
         <form>
             <div class="form-group">
                 <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
@@ -79,6 +85,7 @@
             </div>
             <button type="submit" class="btn btn-primary" id = "btn-submit-form">Login</button>
         </form>
+        {% endblock %}
     </div>
 </div>
 
