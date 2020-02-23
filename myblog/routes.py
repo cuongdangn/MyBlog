@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, url_for, flash, redirect
 from myblog import app
 from myblog.models import *
 from myblog.forms import RegistrationForm, LoginForm
@@ -27,27 +27,29 @@ def wellcome():
 def home():
     return render_template("home.html", posts = posts)
 
-@app.route('/signup', methods = ['GET'])
-def signup():
-    return render_template('loginsignup_page.html')
+# @app.route('/signup', methods = ['GET'])
+# def signup():
+#     return render_template('loginsignup_page.html')
 
 @app.route('/signup-tab', methods = ['GET', 'POST'])
 def signup_tab():
-    print("log log ")
     if(request.method == "GET"):
         return render_template('loginsignup_page.html', title = "signup")
     else:
         typePost = request.form.get("type")
+        form = RegistrationForm()
         if(typePost == "change_content"):
-            form = RegistrationForm()
             return render_template('signup_form_wtform.html', form = form)
         else:
-            new_user = User(email = request.form.get("emailInput"), 
-                            username = request.form.get("usernameInput"),
-                            password = request.form.get("passwordInput"))
+            # new_user = User(email = request.form.get("emailInput"), 
+            #                 username = request.form.get("usernameInput"),
+            #                 password = request.form.get("passwordInput"))
 
-            db.session.add(new_user)
-            db.session.commit()
+            # db.session.add(new_user)
+            # db.session.commit()
+            if form.validate_on_submit():
+                flash(f'Account created for {form.username.data}!', 'success')
+                return redirect(url_for('home'))
             return render_template('signup_form.html')
         
 
