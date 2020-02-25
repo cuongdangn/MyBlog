@@ -4,60 +4,78 @@
 {% block script %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('#login-tab').onclick = () => {
-            clickTo('login-tab')
-        }
+        // document.querySelector('#login-tab').onclick = () => {
+        //     clickTo('login-tab')
+        // }
 
-        document.querySelector('#signup-tab').onclick = () => {
-            clickTo('signup-tab')
-        }
+        // document.querySelector('#signup-tab').onclick = () => {
+        //     clickTo('signup-tab')
+        // }
 
-        console.log(document.title);
+        
+
+        // console.log(document.title);
         if(document.title == "signup - BitBlog")
-            clickTo('signup-tab');
+            setStateForButton('signup-tab');
         else
-            clickTo('login-tab');
+            setStateForButton('login-tab');
         
         // listner post signup and login
-
-
-
     });
     var curtab = "";
     function clickTo(button) {
-        console.log(button + " " + curtab);
+        console.log("click to " + button + " " + curtab);
         if (curtab ===  button) 
             return;
         curtab = button;
         const request = new XMLHttpRequest();
         let url = "/" + button;
         //console.log(url)
-        request.open("POST", url);
-
-        request.onload = () => {
-            console.log("on load");
-            const response = request.responseText;
-            document.querySelector('#content_form').innerHTML = response;
-            document.querySelector('#signup-tab').style.backgroundColor = "#ededed";
-            document.querySelector('#signup-tab').style.color = "#8c989c";
-            document.querySelector('#login-tab').style.backgroundColor = "#ededed";
-            document.querySelector('#login-tab').style.color = "#8c989c";
-            document.querySelector("#"+button).style.backgroundColor = "white";
-            document.querySelector("#"+button).style.color = "black";
-            document.querySelector(".background-form").style.height = "370px";
-            if(button === "login-tab")
-                document.querySelector(".background-form").style.height = "300px";
-            // Push state to URL.
-            document.title = button;
-            history.pushState(null, url, url);
-        };
-        const data = new FormData();
-        data.append("type","change_content")
-        request.send(data);    
-    }
-    function submitForm(){
         
+        request.open("GET", url);
+        request.onload = () => {
+            console.log("on load after form");
+            const response = request.responseText;
+            location.reload();
+            // history.pushState(null, url, url);
+        };
+        const formData = new FormData();
+            // Push state to URL.
+        formData.append("type","change_form");
+        request.send(formData);    
     }
+
+    function setStateForButton(button) {
+        document.querySelector('#signup-tab').style.backgroundColor = "#ededed";
+        document.querySelector('#signup-tab').style.color = "#8c989c";
+        document.querySelector('#login-tab').style.backgroundColor = "#ededed";
+        document.querySelector('#login-tab').style.color = "#8c989c";
+        document.querySelector("#"+button).style.backgroundColor = "white";
+        document.querySelector("#"+button).style.color = "black";
+        // document.querySelector(".background-form").style.height = "430px";
+        // if(button === "login-tab")
+        //     document.querySelector(".background-form").style.height = "300px";
+
+    }
+
+    // function submitForm(){
+    //     console.log("submit form: " + "xxxxxx");
+    //     const request = new XMLHttpRequest();
+    //     let form = document.querySelector('#form_content')
+    //     let url = form.action;
+    //     const formData = new FormData(form);
+    //     //console.log(url)
+    //     request.open("POST", url);
+
+    //     request.onload = () => {
+    //         console.log("on load after form");
+    //         const response = request.responseText;
+    //         document.querySelector('#content_form').innerHTML = response;
+    //         // history.pushState(null, url, url);
+    //     };
+    //     formData.append("type","submit_form");
+    //     request.send(formData);
+    // }
 </script>
 {% endblock %}
 
@@ -65,13 +83,20 @@
 
 <div class = "background-form">
     <div class = "btn-login-signup">
-        <button type="submit" class="btn-login" id = "login-tab">Login</button>
-        <button type="submit" class="btn-login" id = "signup-tab">Signup</button>
+       
+        <button type = "button" class="btn-login" id = "login-tab" onclick="window.location.href='{{ url_for( 'login_tab' ) }}';"
+        >Login</button>
+    
+    
+        <button class="btn-login" id = "signup-tab" onclick="window.location.href='{{ url_for( 'signup_tab' ) }}';"
+        >Sign Up</button>
+    
+       
     </div>
 
     <div class="login-form" id = "content_form">   
         {% block form_content %}
-        <form>
+        <!-- <form>
             <div class="form-group">
                 <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
                     placeholder="Your username or email">
@@ -84,7 +109,7 @@
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
             </div>
             <button type="submit" class="btn btn-primary" id = "btn-submit-form">Login</button>
-        </form>
+        </form> -->
         {% endblock %}
     </div>
 </div>

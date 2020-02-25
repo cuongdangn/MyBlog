@@ -1,4 +1,6 @@
-<form method="POST">
+{% extends "loginsignup_page.html" %}
+{% block form_content %}
+<form method="POST" action = "/login-tab" id = "form_content">
     {{ form.hidden_tag() }}
     <div class="form-group">
         {% if form.email.errors %}
@@ -32,3 +34,4 @@
     <!-- <button type="submit" class="btn btn-primary" id = "btn-submit-form">Create An Account</button> -->
     {{form.submit(class = "btn btn-primary", id = "btn-submit-form")}}
 </form>
+{% endblock %}

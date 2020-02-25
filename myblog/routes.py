@@ -33,41 +33,29 @@ def home():
 
 @app.route('/signup-tab', methods = ['GET', 'POST'])
 def signup_tab():
+    form = RegistrationForm()
     if(request.method == "GET"):
-        return render_template('loginsignup_page.html', title = "signup")
+        return render_template('signup_form_wtform.html', form = form, title = "signup")
     else:
-        typePost = request.form.get("type")
-        form = RegistrationForm()
-        if(typePost == "change_content"):
-            return render_template('signup_form_wtform.html', form = form)
-        else:
-            # new_user = User(email = request.form.get("emailInput"), 
-            #                 username = request.form.get("usernameInput"),
-            #                 password = request.form.get("passwordInput"))
-
-            # db.session.add(new_user)
-            # db.session.commit()
-            if form.validate_on_submit():
-                flash(f'Account created for {form.username.data}!', 'success')
-                return redirect(url_for('home'))
-            return render_template('loginsignup_page.html', title = "signup", form = form)
+        if form.validate_on_submit():
+            flash(f'Account created for {form.username.data}!', 'success')
+            return redirect(url_for('home'))
+        return render_template('signup_form_wtform.html', form = form, title = "signup")
         
 
 
 @app.route('/login-tab', methods = ['GET', 'POST'])
 def login_tab():
+    form = LoginForm()
     if(request.method == "GET"):
-        return render_template('loginsignup_page.html', title = "login")
+  
+        return render_template('login_form_wtform.html', form = form, title = "login")
+     
     else:
-        typePost = request.form.get("type")
-        form = LoginForm()
-        if(typePost == "change_content"):
-            return render_template('login_form_wtform.html', form = form)
-        else:
-            if form.validate_on_submit():
-                if form.email.data == 'admin@blog.com' and form.password.data == 'Password':
-                    flash('You have been logged in!', 'success')
-                    return redirect(url_for('home'))
-                else:
-                    flash('Login Unsuccessful. Please check username and password', 'danger')
-            return render_template('login_form_wtform.html', form = form)
+        if form.validate_on_submit():
+            if form.email.data == 'admin@blog.com' and form.password.data == 'Password':
+                flash('You have been logged in!', 'success')
+                return redirect(url_for('home'))
+            else:
+                flash('Login Unsuccessful. Please check username and password', 'danger')
+        return render_template('login_form_wtform.html', form = form, title = "login")
