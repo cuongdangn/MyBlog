@@ -22,28 +22,28 @@
         
         // listner post signup and login
     });
-    var curtab = "";
-    function clickTo(button) {
-        console.log("click to " + button + " " + curtab);
-        if (curtab ===  button) 
-            return;
-        curtab = button;
-        const request = new XMLHttpRequest();
-        let url = "/" + button;
-        //console.log(url)
+    // var curtab = "";
+    // function clickTo(button) {
+    //     console.log("click to " + button + " " + curtab);
+    //     if (curtab ===  button) 
+    //         return;
+    //     curtab = button;
+    //     const request = new XMLHttpRequest();
+    //     let url = "/" + button;
+    //     //console.log(url)
         
-        request.open("GET", url);
-        request.onload = () => {
-            console.log("on load after form");
-            const response = request.responseText;
-            location.reload();
-            // history.pushState(null, url, url);
-        };
-        const formData = new FormData();
-            // Push state to URL.
-        formData.append("type","change_form");
-        request.send(formData);    
-    }
+    //     request.open("GET", url);
+    //     request.onload = () => {
+    //         console.log("on load after form");
+    //         const response = request.responseText;
+    //         location.reload();
+    //         // history.pushState(null, url, url);
+    //     };
+    //     const formData = new FormData();
+    //         // Push state to URL.
+    //     formData.append("type","change_form");
+    //     request.send(formData);    
+    // }
 
     function setStateForButton(button) {
         document.querySelector('#signup-tab').style.backgroundColor = "#ededed";
@@ -52,30 +52,9 @@
         document.querySelector('#login-tab').style.color = "#8c989c";
         document.querySelector("#"+button).style.backgroundColor = "white";
         document.querySelector("#"+button).style.color = "black";
-        // document.querySelector(".background-form").style.height = "430px";
-        // if(button === "login-tab")
-        //     document.querySelector(".background-form").style.height = "300px";
-
+      
     }
 
-    // function submitForm(){
-    //     console.log("submit form: " + "xxxxxx");
-    //     const request = new XMLHttpRequest();
-    //     let form = document.querySelector('#form_content')
-    //     let url = form.action;
-    //     const formData = new FormData(form);
-    //     //console.log(url)
-    //     request.open("POST", url);
-
-    //     request.onload = () => {
-    //         console.log("on load after form");
-    //         const response = request.responseText;
-    //         document.querySelector('#content_form').innerHTML = response;
-    //         // history.pushState(null, url, url);
-    //     };
-    //     formData.append("type","submit_form");
-    //     request.send(formData);
-    // }
 </script>
 {% endblock %}
 

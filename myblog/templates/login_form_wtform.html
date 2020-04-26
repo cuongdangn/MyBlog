@@ -1,6 +1,6 @@
 {% extends "loginsignup_page.html" %}
 {% block form_content %}
-<form method="POST" action = "/login-tab" id = "form_content">
+<form method="POST"  id = "form_content">
     {{ form.hidden_tag() }}
     <div class="form-group">
         {% if form.email.errors %}
