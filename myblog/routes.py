@@ -4,7 +4,7 @@ from PIL import Image
 from flask import render_template, request, url_for, flash, redirect
 from myblog import app, db, bcrypt
 from myblog.models import *
-from myblog.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from myblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 posts = [
@@ -30,6 +30,10 @@ def wellcome():
 @app.route('/home', methods = ['GET'])
 def home():
     return render_template("home.html", posts = posts)
+
+@app.route('/about', methods = ['GET'])
+def about():
+    return render_template("about.html", title = 'About')
 
 # @app.route('/signup', methods = ['GET'])
 # def signup():
@@ -108,5 +112,11 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='Account',
+    return render_template('account.html', title = 'Account',
                            image_file=image_file, form=form)
+
+@app.route("/post/new", methods =['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    return render_template('create_post.html', title = 'New Post', form = form)

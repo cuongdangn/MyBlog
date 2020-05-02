@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <head>
     {% block head %}
-    <link rel="icon" href="static/css/blog.png">
+    <link rel="icon" href="http://127.0.0.1:5000/static/css/blog.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	<link rel="stylesheet" href="static/css/index.css">
+	<link rel="stylesheet" href="http://127.0.0.1:5000/static/css/index.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
-    <title>{% block title %}{% endblock %} - BitBlog</title>
+    <title>{% block title %}{{ title }}{% endblock %} - BitBlog</title>
     {% endblock %}
     {% block script %}{% endblock %}
 </head>
@@ -17,7 +17,7 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class=container>
-                <a class="navbar-brand" href="#"><img src="static/css/icon1.png" class="logo">Bit Blog</a>
+                <a class="navbar-brand" href="{{ url_for('home') }}"><img src="http://127.0.0.1:5000/static/css/icon1.png" class="logo">Bit Blog</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
                             <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="{{ url_for('about') }}">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
@@ -38,7 +38,10 @@
                     <ul class="navbar-nav navbar-right">
                         {% if current_user.is_authenticated %}
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url_for('account') }}"> Account</a>
+                                <a  class="nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                            </li>
+                            <li class="nav-item">
+                                <a  class="nav-link" href="{{ url_for('account') }}"> {{current_user.username}}</a>
                             </li>
                             <li class="nav-item">
                                 <a  class="nav-link" href="{{ url_for('logout') }}"> Logout</a>
