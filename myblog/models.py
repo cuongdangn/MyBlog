@@ -1,5 +1,6 @@
 from myblog import db, login_manager
 from flask_login import UserMixin
+import datetime
 
 
 @login_manager.user_loader
@@ -24,7 +25,8 @@ class PostBlog(db.Model):
     content = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     title = db.Column(db.String, nullable = False)
-    time = db.Column(db.Date, nullable = False)
+    time = db.Column(db.Date, nullable = False, default = datetime.datetime.utcnow)
+
 
 class Comment(db.Model):
     __tablename__  = "comment"
