@@ -17,7 +17,7 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class=container>
-                <a class="navbar-brand" href="{{ url_for('home') }}"><img src="http://127.0.0.1:5000/static/css/icon1.png" class="logo">Bit Blog</a>
+                <a class="navbar-brand" href="{{ url_for('main.home') }}"><img src="http://127.0.0.1:5000/static/css/icon1.png" class="logo">Bit Blog</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,10 +26,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                            <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                            <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
@@ -38,20 +38,20 @@
                     <ul class="navbar-nav navbar-right">
                         {% if current_user.is_authenticated %}
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                                <a  class="nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
                             </li>
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url_for('account') }}"> {{current_user.username}}</a>
+                                <a  class="nav-link" href="{{ url_for('users.account') }}"> {{current_user.username}}</a>
                             </li>
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url_for('logout') }}"> Logout</a>
+                                <a  class="nav-link" href="{{ url_for('users.logout') }}"> Logout</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url_for('signup_tab') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
+                                <a  class="nav-link" href="{{ url_for('users.signup_tab') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
                             </li>
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url_for('login_tab') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                                <a  class="nav-link" href="{{ url_for('users.login_tab') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                             </li>
                         {% endif %}
                         
