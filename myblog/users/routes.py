@@ -13,6 +13,8 @@ users = Blueprint('users', __name__)
 
 @users.route('/signup-tab', methods = ['GET', 'POST'])
 def signup_tab():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
     form = RegistrationForm()
     if(request.method == "GET"):
         return render_template('signup_form_wtform.html', form = form, title = "signup")
